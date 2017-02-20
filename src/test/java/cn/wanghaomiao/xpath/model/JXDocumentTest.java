@@ -80,9 +80,15 @@ public class JXDocumentTest {
         	  System.out.println(StringUtils.join(node.sel("/a/@href"), ""));
               System.out.println(StringUtils.join(node.sel("/a/h3/allText()"), ""));
               System.out.println(StringUtils.join(node.sel("/a/p/allText()"), ""));
+            //*[@id="auto-channel-lazyload-article"]/ul[1]/li[3]/a/div[2]/span[2]/em[1]/text()
+            //*[@id="auto-channel-lazyload-article"]/ul[1]/li[3]/a/div[2]/span[2]/em[2]
+             System.out.println("已经阅读 量= " + StringUtils.join(node.sel("/a/div[2]/span[@class='fn-right']/em[1]/text()"), ""));
+              System.out.println("已经评论数量 = " + StringUtils.join(node.sel("/a/div[2]/span[@class='fn-right']/em[2]/allText()"), ""));
           }
       }
     }
+    
+   
 
     /**
      * Method: sel(String xpath)
