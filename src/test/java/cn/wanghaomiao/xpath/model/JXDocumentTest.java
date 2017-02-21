@@ -42,53 +42,78 @@ public class JXDocumentTest {
 //        custom = new JXDocument("<li><b>性别：</b>男</li>");
 //    }
     
-    
     @Before
     public void before() throws Exception {
-       
+        //http://www.autohome.com.cn/all/600/#liststart
+    	
         if (doubanTest == null) {
-            Document doc = Jsoup.connect("http://www.autohome.com.cn/all/").userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:29.0) Gecko/20100101 Firefox/29.0").get();
+            Document doc = Jsoup
+            		.connect("http://www.autohome.com.cn/all/1/#liststart").userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:29.0) Gecko/20100101 Firefox/29.0")
+            		
+            		.get();
             doubanTest = new JXDocument(doc);
         }
     }
-  //*[@id="auto-channel-lazyload-article"]/ul[1]/li[2]
-   /** <li data-artidanchor="898900">
-    <a href="http://www.autohome.com.cn/news/201702/898900.html#pvareaid=102624">
-        <div class="article-pic"><img src="http://www2.autoimg.cn/newsdfs/g10/M0C/0F/6A/120x90_0_autohomecar__wKgH0ViqwciAEnQqAAFdu48ykUE175.jpg"></div>
-        <h3>涉及59辆 奔驰召回部分E级/迈巴赫S级等</h3>
-        <div class="article-bar">
-            <span class="fn-left">1小时前</span>
-            <span class="fn-right">
-                <em><i class="icon12 icon12-eye"></i>1.5万</em>
-                <em data-class="icon12 icon12-infor" data-articleid="898900"><i class="icon12 icon12-infor"></i>29</em>
-            </span>
-        </div>
-        <p>[汽车之家 新闻]  日前，梅赛德斯-奔驰（中国）汽车销售有限公司及北京奔驰汽车有限公司根据《缺陷汽车产品召回管理条例》的要求，向国家质检总局备案了召...</p>
-    </a>
-</li>*/
+    
+    
+    /**
+     * 焦点图爬虫
+     * @param xpath
+     * @throws XpathSyntaxErrorException
+     */
+//    @Test
+//    @DataProvider(value = {
+//    		"//div[@class='focusimg-pic']/ul/li"
+//    })
+//    public void foucs(String xpath) throws XpathSyntaxErrorException {
+//      System.out.println("current xpath:" + xpath);
+//      List<JXNode> jxNodeList = doubanTest.selN(xpath);
+//      System.out.println(jxNodeList.size());
+//      for (JXNode node : jxNodeList) {
+//          if (!node.isText()) {
+//        	 System.out.println("文章标题 = "  + StringUtils.join(node.sel( "/h2/allText()"), ""));
+//        	 System.out.println("文章主题 = "  + StringUtils.join(node.sel( "/p/allText()"), ""));
+//        	 String articleUrl = StringUtils.join(node.sel("/a/@href"), "");
+//        	 System.out.println("文章超链接  = " + articleUrl);
+//        	 String []arr = articleUrl.split("\\.");
+//        	 arr = arr[3].split("/");
+//        	 System.out.println("文章ID = "  + arr[arr.length-1]);
+//             System.out.println("图片链接 = " +  StringUtils.join(node.sel("/a/img/@src"), ""));
+//             System.out.println("#######################################################################################################");
+//          }
+//      }
+//    }
+    
+    /**
+     * 分页爬虫
+     * http://www.autohome.com.cn/all/2/#liststart
+     * @param xpath
+     * @throws XpathSyntaxErrorException
+     */
+ 
     @Test
     @DataProvider(value = {
     		"//ul[@class='article']/li"
     })
-    public void testJXNode(String xpath) throws XpathSyntaxErrorException {
+    public void mutilPages(String xpath) throws XpathSyntaxErrorException {
       System.out.println("current xpath:" + xpath);
       List<JXNode> jxNodeList = doubanTest.selN(xpath);
       System.out.println(jxNodeList.size());
       for (JXNode node : jxNodeList) {
           if (!node.isText()) {
-        	  //System.out.println("########### " + node.getTextVal());
-        	  System.out.println(StringUtils.join(node.sel("/a/@href"), ""));
-              System.out.println(StringUtils.join(node.sel("/a/h3/allText()"), ""));
-              System.out.println(StringUtils.join(node.sel("/a/p/allText()"), ""));
-            //*[@id="auto-channel-lazyload-article"]/ul[1]/li[3]/a/div[2]/span[2]/em[1]/text()
-            //*[@id="auto-channel-lazyload-article"]/ul[1]/li[3]/a/div[2]/span[2]/em[2]
-             System.out.println("已经阅读 量= " + StringUtils.join(node.sel("/a/div[2]/span[@class='fn-right']/em[1]/text()"), ""));
-              System.out.println("已经评论数量 = " + StringUtils.join(node.sel("/a/div[2]/span[@class='fn-right']/em[2]/allText()"), ""));
+        	 System.out.println("文章ID = "  + StringUtils.join(node.sel("/a/div[2]/span[2]/em[2]/@data-articleid"), ""));
+        	 System.out.println("文章标题 = "  + StringUtils.join(node.sel( "/a/h3/allText()"), ""));
+        	 System.out.println("文章超链接  = " + StringUtils.join(node.sel("/a/@href"), ""));
+             System.out.println("文章主题" +  StringUtils.join(node.sel("/a/p/allText()"), ""));
+             System.out.println("图片链接" +  StringUtils.join(node.sel("/a/div[1]/img/@src"), ""));
+             System.out.println("已经阅读 量= " + StringUtils.join(node.sel("/a/div[2]/span[2]/em[1]/text()"), ""));
+             System.out.println("发布时间 = " + StringUtils.join(node.sel("/a/div[2]/span[1]/allText()"), ""));
+             
+             System.out.println("#######################################################################################################");
           }
       }
     }
     
-   
 
     /**
      * Method: sel(String xpath)
