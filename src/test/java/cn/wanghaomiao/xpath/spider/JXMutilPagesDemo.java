@@ -68,7 +68,7 @@ public class JXMutilPagesDemo {
             }
         }
         //爬下一页
-        String nextPage = StringUtils.join(autoHomeTest.sel("//div[@class='page']/a[@class='page-item-next']/@href"),"");
+        nextPage = StringUtils.join(autoHomeTest.sel("//div[@class='page']/a[@class='page-item-next']/@href"),"");
         System.out.println( "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   网络爬虫开始抓取下一页  = " + nextPage + "   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         try {
 			Thread.sleep(1000*10);
