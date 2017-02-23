@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
-    </parent>
+
     <groupId>cn.wanghaomiao</groupId>
     <artifactId>JsoupXpath</artifactId>
     <version>0.3.2</version>
@@ -54,6 +50,13 @@
     <artifactId>jsoup</artifactId>
     <version>1.10.2</version>
 </dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+<dependency>
+    <groupId>org.apache.httpcomponents</groupId>
+    <artifactId>httpclient</artifactId>
+    <version>4.5.3</version>
+</dependency>
+
  
         <dependency>
             <groupId>org.apache.commons</groupId>

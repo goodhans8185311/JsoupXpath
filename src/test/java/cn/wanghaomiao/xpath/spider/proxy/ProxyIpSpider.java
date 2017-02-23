@@ -1,4 +1,4 @@
-package cn.wanghaomiao.xpath.spider;
+package cn.wanghaomiao.xpath.spider.proxy;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,11 +20,12 @@ import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 
 /**
- * 汽车之家栏目分页
+ * 代理服务器ip爬虫
+ * http://www.cybersyndrome.net/pla.html
  */
 @RunWith(PowerMockRunner.class)
 @PowerMockRunnerDelegate(DataProviderRunner.class)
-public class JXMutilPagesDemo {
+public class ProxyIpSpider {
 
     private JXDocument autoHomeTest;
     private static String nextPage;
@@ -49,7 +50,7 @@ public class JXMutilPagesDemo {
     	
     	Document doc = Jsoup
          		.connect("http://www.autohome.com.cn"+suffix).userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:29.0) Gecko/20100101 Firefox/29.0")
-         		.proxy("181.215.114.246", 8080)
+         		.proxy("106.14.61.27", 3128)
          		.get();
     	String rootXpath = "//ul[@class='article']/li";
     	JXDocument  autoHomeTest = new JXDocument(doc);
