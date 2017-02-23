@@ -1,6 +1,7 @@
 package cn.wanghaomiao.xpath.spider;
 
 import java.io.IOException;
+import java.net.Proxy;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -47,6 +48,8 @@ public class JXMutilPagesDemo {
      */
     public static void loopMutilPages(String suffix) throws XpathSyntaxErrorException, IOException {
     	
+    	
+    
     	Document doc = Jsoup
          		.connect("http://www.autohome.com.cn"+suffix).userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:29.0) Gecko/20100101 Firefox/29.0")
          		.proxy("181.215.114.246", 8080)
